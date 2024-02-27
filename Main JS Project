@@ -1,0 +1,18 @@
+let input = require('sync-input');
+console.log("Starting to make a coffee");
+console.log("Grinding coffee beans");
+console.log("Boiling water");
+console.log("Mixing boiled water with crushed coffee beans");
+console.log("Pouring coffee into the cup");
+console.log("Pouring some milk into the cup");
+console.log("Coffee is ready!");
+
+let coffeeCups = input("Write how many cups of coffee you will need:");
+console.log("For " + coffeeCups + " cups of coffee you will need:");
+console.log( coffeeCups * 200 + " ml of water");
+console.log(coffeeCups * 50 +" ml of milk");
+console.log(coffeeCups * 15 +" g of coffee beans");
+
+let water = input("Write how many ml of water the coffee machine has");
+let milk = input("Write how many ml of milk the coffee machine has");
+let beans = input("Write how many grams of coffee beans the coffee machine has");
