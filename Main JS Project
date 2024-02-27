@@ -16,3 +16,31 @@ console.log(coffeeCups * 15 +" g of coffee beans");
 let water = input("Write how many ml of water the coffee machine has");
 let milk = input("Write how many ml of milk the coffee machine has");
 let beans = input("Write how many grams of coffee beans the coffee machine has");
+
+function coffeeForAll(){
+  let waterAvailable = parseInt(input("Write how many ml of water the coffee machine has:"));
+  let milkAvailable = parseInt(input("Write how many ml of milk the coffee machine has:"));
+  let coffeeAvailable = parseInt(input("Write how many grams of coffee beans the coffee machine has:"));
+
+  let coffeeNeeded = parseInt(input("Write how many cups of coffee you will need:"));
+
+  let cupsWater = Math.floor(waterAvailable / 200);
+  let cupsMilk = Math.floor(milkAvailable / 50);
+  let cupsCoffeeBeans = Math.floor(coffeeAvailable / 15);
+
+  let maxCups = Math.min(cupsCoffeeBeans, cupsWater, cupsMilk);
+
+  if (maxCups >= coffeeNeeded) {
+    if ( maxCups > coffeeNeeded) {
+      console.log("Yes, I can make that amount of coffee (and even " + (maxCups - coffeeNeeded) +
+                  "more than that)");
+    }else {
+      console.log("Yes, I can make that amount of coffee");
+    }
+    
+  }else {
+    console.log("No, I can make only " + maxCups + "cups of coffee");
+  }
+}
+
+coffeeForAll();
