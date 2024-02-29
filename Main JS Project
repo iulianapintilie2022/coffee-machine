@@ -44,3 +44,85 @@ function coffeeForAll(){
 }
 
 coffeeForAll();
+
+
+let input = require('sync-input');
+
+class CoffeeMachine {
+  constructor() {
+    this.water = 400;
+    this.milk = 540;
+    this.beans = 120;
+    this.cups = 9;
+    this.money = 550;
+  }
+
+  buy(coffeeType){
+   switch(coffeeType){
+      case "1":
+        this.makeCoffee (250, 0, 16, 1, 4);
+        break;
+      case "2":
+        this.makeCoffee (350, 75, 20, 1, 7);
+        break;
+      case "3":
+        this.makeCoffee (200, 100, 12, 1, 6);
+        break;
+      default: 
+        console.log("Invalid coffee type...")
+    }
+  }
+
+  makeCoffee (waterNeeded, milkNeeded, beansNeeded, cupNeeded, Price){
+    if (this.water >= waterNeeded && 
+        this.milk >= milkNeeded && 
+        this.beans >= beansNeeded &&
+        this.cups >= cupNeeded) {
+      console.log("Coffee right up");
+      this.water -= waterNeeded;
+      this.milk -= milkNeeded;
+      this.beans -= beansNeeded;
+      this.cups -= cupNeeded;
+      this.money += Price;
+    } else {
+      console.log("Sorry, you need to refill.")
+    }
+  }
+
+  fill (water, milk, beans, cups, money){
+    this.water += water;
+    this.milk += milk;
+   this.beans += beans;
+    this.cups += cups;
+  }
+
+  take(){
+    console.log("I gave you $" + this.money);
+    console.log("");
+    this.money = 0;
+  }
+  displaySupplies(){
+    console.log("The coffee machine has:");
+    console.log(this.water + " ml of water");
+    console.log(this.milk + " ml of milk");
+    console.log(this.beans + " g of coffee beans");
+    console.log(this.cups + " disposable cups");
+    console.log("$" + this.money + " of money");
+  }
+}
+const coffeeMachine = new CoffeeMachine();
+coffeeMachine.displaySupplies();
+
+const action = input("Write action (buy, fill, take):");
+if (action === "buy") {
+  const coffeeType = input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
+  coffeeMachine.buy(coffeeType); 
+} else if(action === "fill"){
+   const water = parseInt(input("Write how many ml of water do you want to add:"));
+   const milk = parseInt(input("Write how many ml of milk do you want to add:"));
+   const beans = parseInt(input("Write how many grams of coffee beans do you want to add:"));
+   const cups = parseInt(input("Write how many disposable cups do you want to add:"));
+  coffeeMachine.fill(water, milk, beans, cups);
+} else if(action === "take") {
+  coffeeMachine.take()
+}
